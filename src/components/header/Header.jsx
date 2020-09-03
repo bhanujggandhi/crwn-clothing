@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -12,34 +11,34 @@ import CartDropdown from '../cart-dropdown/CartDropdown';
 import { selectCartHidden } from '../../redux/cart/cartSelectors';
 import { selectCurrentUser } from '../../redux/user/userSelectors';
 
-import './Header.scss';
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionsContainer,
+  OptionLink,
+} from './Header.styles';
 
 const Header = ({ currentUser, hidden }) => {
   return (
-    <div className='header'>
-      <Link to='/'>
+    <HeaderContainer>
+      <LogoContainer to='/'>
         <Logo className='logo' />
-      </Link>
-      <div className='options'>
-        <Link className='option' to='/shop'>
-          Shop
-        </Link>
-        <Link className='option' to='/shop'>
-          Contact
-        </Link>
+      </LogoContainer>
+      <OptionsContainer>
+        <OptionLink to='/shop'>Shop</OptionLink>
+        <OptionLink to='/shop'>Contact</OptionLink>
         {currentUser ? (
-          <div className='option' onClick={() => auth.signOut()}>
+          <OptionLink as='div' onClick={() => auth.signOut()}>
             Sign Out
-          </div>
+          </OptionLink>
         ) : (
-          <Link className='option' to='/signin'>
-            Sign in
-          </Link>
+          // as = {} can have any different component of just a normal div or a tag. This is a inbuild feature of styled-component
+          <OptionLink to='/signin'>Sign in</OptionLink>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
       {hidden ? <CartDropdown /> : null}
-    </div>
+    </HeaderContainer>
   );
 };
 
