@@ -22,18 +22,18 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
   return (
     <HeaderContainer>
       <LogoContainer to='/'>
-        <Logo className='logo' />
+        <Logo />
       </LogoContainer>
       <OptionsContainer>
-        <OptionLink to='/shop'>Shop</OptionLink>
-        <OptionLink to='/shop'>Contact</OptionLink>
+        <OptionLink to='/shop'>SHOP</OptionLink>
+        <OptionLink to='/shop'>CONTACT</OptionLink>
         {currentUser ? (
           <OptionLink as='div' onClick={signOutStart}>
-            Sign Out
+            SIGN OUT
           </OptionLink>
         ) : (
           // as = {} can have any different component of just a normal div or a tag. This is a inbuild feature of styled-component
-          <OptionLink to='/signin'>Sign in</OptionLink>
+          <OptionLink to='/signin'>SIGN IN</OptionLink>
         )}
         <CartIcon />
       </OptionsContainer>
