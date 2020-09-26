@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from './components/header/Header';
 import Spinner from './components/spinner/Spinner.jsx';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 
 import { GlobalStyle } from './global.styles.jsx';
 
@@ -26,16 +27,18 @@ const App = ({ checkUserSession, currentUser }) => {
       <GlobalStyle />
       <Header />
       <Switch>
-        <Suspense fallback={<Spinner />}>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/shop' component={Shop} />
-          <Route exact path='/checkout' component={Checkout} />
-          <Route
-            exact
-            path='/signin'
-            render={() => (currentUser ? <Redirect to='/' /> : <SignPage />)}
-          />
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Route exact path='/' component={Homepage} />
+            <Route path='/shop' component={Shop} />
+            <Route exact path='/checkout' component={Checkout} />
+            <Route
+              exact
+              path='/signin'
+              render={() => (currentUser ? <Redirect to='/' /> : <SignPage />)}
+            />
+          </Suspense>
+        </ErrorBoundary>
       </Switch>
     </div>
   );
