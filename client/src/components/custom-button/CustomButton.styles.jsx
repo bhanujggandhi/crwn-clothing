@@ -62,6 +62,6 @@ export const CustomButtonContainer = styled.button`
   ${getButtonStyles}
 
   @media screen and (max-width: 800px) {
-    min-width: 150px;
+    min-width: 100px;
   }
 `;
