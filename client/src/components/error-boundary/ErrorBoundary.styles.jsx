@@ -19,6 +19,13 @@ export const ErrorImageContainer = styled.div`
 `;
 
 export const ErrorImageText = styled.h2`
-  font-size: 28px;
+  font-size: 30px;
   color: #5f749c;
+  margin-bottom: 0;
+`;
+
+export const ErrorImageSubText = styled.p`
+  font-size: 26px;
+  color: #c8c8c8;
+  text-align: center;
 `;

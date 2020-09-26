@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import CheckoutItem from '../../components/checkout-item/CheckoutItem';
+import {
+  ErrorImageContainer,
+  ErrorImageOverlay,
+  ErrorImageText,
+  ErrorImageSubText,
+} from '../../components/error-boundary/ErrorBoundary.styles';
 import StripeButton from '../../components/stripe/StripeButton';
 
 import {
@@ -19,7 +25,7 @@ import {
 } from './Checkout.styles';
 
 const Checkout = ({ cartItems, total }) => {
-  return (
+  return cartItems.length > 0 ? (
     <CheckoutPageContainer>
       <CheckoutHeaderContainer>
         <HeaderBlockContainer>
@@ -51,6 +57,14 @@ const Checkout = ({ cartItems, total }) => {
       </TestWarningContainer>
       <StripeButton price={total} />
     </CheckoutPageContainer>
+  ) : (
+    <ErrorImageOverlay>
+      <ErrorImageContainer imageUrl='https://cdn.dribbble.com/users/204955/screenshots/4930541/emptycart.png' />
+      <ErrorImageText>Your cart is empty!</ErrorImageText>
+      <ErrorImageSubText>
+        Looks like you haven't made your choice yet...
+      </ErrorImageSubText>
+    </ErrorImageOverlay>
   );
 };
 
