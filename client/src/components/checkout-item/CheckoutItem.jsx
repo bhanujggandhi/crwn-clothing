@@ -28,7 +28,7 @@ const CheckoutItem = ({ cartItem, dispatch }) => {
         <span>{quantity}</span>
         <div onClick={() => dispatch(addItem(cartItem))}>&#10095;</div>
       </QuantityContainer>
-      <TextContainer>{price}</TextContainer>
+      <TextContainer>&#8377;{price}.00</TextContainer>
       <RemoveButtonContainer
         onClick={() => dispatch(clearItemFromCart(cartItem))}
       >

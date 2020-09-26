@@ -43,7 +43,7 @@ const Checkout = ({ cartItems, total }) => {
       ))}
 
       <TotalContainer>
-        <span>Total: ${total}</span>
+        <span>Total: &#8377;{total}.00</span>
       </TotalContainer>
       <TestWarningContainer>
         *Please use the following test credit card for the payments* <br /> 4242
