@@ -4,13 +4,9 @@ import { getUserCartRef } from '../../firebase/firebase.utils';
 
 import UserActionTypes from '../user/userTypes';
 import { selectCurrentUser } from '../user/userSelectors';
-import { clearCart, setCartFromFirebase } from './cartActions';
+import { setCartFromFirebase } from './cartActions';
 import { selectCartItems } from './cartSelectors';
 import { cartActionTypes } from './cartTypes';
-
-export function* clearCartOnSignOut() {
-  yield put(clearCart());
-}
 
 export function* checkCartFromFirebase({ payload: user }) {
   const cartRef = yield getUserCartRef(user.id);
@@ -31,10 +27,6 @@ export function* updateCartInFirebase() {
   }
 }
 
-export function* onSignOutSuccess() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut);
-}
-
 export function* onUserSignIn() {
   yield takeLatest(UserActionTypes.SIGN_IN_SUCCESS, checkCartFromFirebase);
 }
@@ -51,5 +43,5 @@ export function* onCartChange() {
 }
 
 export function* cartSagas() {
-  yield all([call(onSignOutSuccess), call(onCartChange), call(onUserSignIn)]);
+  yield all([call(onCartChange), call(onUserSignIn)]);
 }
